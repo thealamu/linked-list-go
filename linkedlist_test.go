@@ -19,6 +19,28 @@ func TestValueAt(t *testing.T) {
 	}
 }
 
+func TestPopFront(t *testing.T) {
+	l := New()
+
+	v1 := 1
+	v2 := "Hello"
+	v3 := "World"
+
+	l.PushFront(v1)
+	l.PushFront(v2)
+	l.PushFront(v3)
+
+	got := l.PopFront()
+	if got != v3 {
+		t.Errorf("expected '%+v', got '%+v'", v3, got)
+	}
+
+	got = l.Size()
+	if got != 2 {
+		t.Errorf("expected size after PopFront to be %d, got %d", 2, got)
+	}
+}
+
 func TestPushFront(t *testing.T) {
 	l := New()
 

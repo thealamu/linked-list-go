@@ -42,6 +42,16 @@ func (l *LinkedLists) PushFront(item interface{}) {
 	l.head = newHead
 }
 
+// PopFront removes front item and returns its value
+func (l *LinkedLists) PopFront() interface{} {
+	if l.head == nil {
+		return nil
+	}
+	tmp := l.head
+	l.head = l.head.next
+	return tmp.data
+}
+
 // Size returns the length of the linked lists
 func (l *LinkedLists) Size() int {
 	// walk the list to report the size
