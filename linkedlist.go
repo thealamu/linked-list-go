@@ -1,5 +1,10 @@
 package linkedlists
 
+import (
+	"fmt"
+	"strings"
+)
+
 type LinkedLists struct {
 	head *node
 }
@@ -133,4 +138,16 @@ func (l *LinkedLists) Walk(f iterFunc) {
 		}
 		curr = curr.next
 	}
+}
+
+func (l *LinkedLists) String() string {
+	var b strings.Builder
+
+	l.Walk(func(n *node) bool {
+		d := fmt.Sprintf("%+v", n.data)
+		b.WriteString(d)
+		return false
+	})
+
+	return b.String()
 }
