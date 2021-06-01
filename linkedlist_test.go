@@ -22,7 +22,7 @@ func TestReverse(t *testing.T) {
 
 	l.Reverse()
 
-	length := l.Size()
+	length := len(data)
 	for i := 0; i < length; i++ {
 		got := l.ValueAt(i)
 		expected := data[(length-i)-1]

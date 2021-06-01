@@ -20,6 +20,7 @@ func New() *LinkedLists {
 
 // Reverse the linked lists
 func (l *LinkedLists) Reverse() {
+	fmt.Println(l)
 	var newListHead *node
 
 	l.Walk(func(n *node) bool {
@@ -29,6 +30,7 @@ func (l *LinkedLists) Reverse() {
 	})
 
 	l.head = newListHead
+	fmt.Println(l)
 }
 
 func (l *LinkedLists) Insert(index int, value interface{}) {
@@ -133,10 +135,11 @@ type iterFunc func(*node) bool
 func (l *LinkedLists) Walk(f iterFunc) {
 	curr := l.head
 	for curr != nil {
+		next := curr.next
 		if f(curr) {
 			break
 		}
-		curr = curr.next
+		curr = next
 	}
 }
 
