@@ -36,3 +36,8 @@ func (l *LinkedLists) Size() int {
 	}
 	return i
 }
+
+// Returns true if list is empty
+func (l *LinkedLists) Empty() bool {
+	return l.Size() == 0
+}

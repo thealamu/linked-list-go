@@ -35,3 +35,11 @@ func TestSize(t *testing.T) {
 		t.Errorf("expected size %d, got %d", 3, got)
 	}
 }
+
+func TestEmpty(t *testing.T) {
+	l := New()
+
+	if !l.Empty() {
+		t.Errorf("expected list to be empty")
+	}
+}
