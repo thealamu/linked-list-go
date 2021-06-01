@@ -13,6 +13,19 @@ func New() *LinkedLists {
 	return &LinkedLists{}
 }
 
+// Reverse the linked lists
+func (l *LinkedLists) Reverse() {
+	var newListHead *node
+
+	l.Walk(func(n *node) bool {
+		n.next = newListHead
+		newListHead = n
+		return false
+	})
+
+	l.head = newListHead
+}
+
 func (l *LinkedLists) Insert(index int, value interface{}) {
 	newNode := &node{data: value}
 

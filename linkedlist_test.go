@@ -2,6 +2,36 @@ package linkedlists
 
 import "testing"
 
+func TestReverse(t *testing.T) {
+	l := New()
+
+	data := []interface{}{
+		1,
+		"Hello",
+		"World",
+		"How",
+		"Are",
+		"You",
+		2,
+		"Day",
+	}
+
+	for _, d := range data {
+		l.PushBack(d)
+	}
+
+	l.Reverse()
+
+	length := l.Size()
+	for i := 0; i < length; i++ {
+		got := l.ValueAt(i)
+		expected := data[(length-i)-1]
+		if got != expected {
+			t.Errorf("expected '%+v' at index %d, got '%+v'", expected, i, got)
+		}
+	}
+}
+
 func TestInsert(t *testing.T) {
 	l := New()
 
