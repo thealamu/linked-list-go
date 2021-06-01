@@ -13,6 +13,28 @@ func New() *LinkedLists {
 	return &LinkedLists{}
 }
 
+func (l *LinkedLists) Insert(index int, value interface{}) {
+	newNode := &node{data: value}
+
+	if index == 0 {
+		l.PushFront(newNode.data)
+		return
+	}
+
+	var prevNode *node
+	i := 0
+	l.Walk(func(n *node) bool {
+		if i == index {
+			newNode.next = prevNode.next
+			prevNode.next = newNode
+			return true
+		}
+		prevNode = n
+		i++
+		return false
+	})
+}
+
 // ValueAt returns the value of the item at index (starting at 0 for first)
 func (l *LinkedLists) ValueAt(index int) interface{} {
 	var data interface{}

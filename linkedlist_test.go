@@ -2,6 +2,31 @@ package linkedlists
 
 import "testing"
 
+func TestInsert(t *testing.T) {
+	l := New()
+
+	v1 := 1
+	v2 := "Hello"
+	v3 := "World"
+
+	l.PushBack(v1)
+	l.PushBack(v2)
+	l.PushBack(v3)
+
+	l.Insert(1, "Hi")
+
+	got := l.ValueAt(1)
+	if got != "Hi" {
+		t.Errorf("expected '%+v' at index 1, got '%+v'", "Hi", got)
+	}
+
+	l.Insert(0, 3)
+	got = l.ValueAt(0)
+	if got != 3 {
+		t.Errorf("expected '%+v' at index 0, got '%+v'", 3, got)
+	}
+}
+
 func TestValueAt(t *testing.T) {
 	l := New()
 
