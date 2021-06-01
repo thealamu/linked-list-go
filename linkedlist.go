@@ -28,12 +28,8 @@ func (l *LinkedLists) PushFront(item interface{}) {
 // Size returns the length of the linked lists
 func (l *LinkedLists) Size() int {
 	// walk the list to report the size
-	curr := l.head
 	i := 0
-	for curr != nil {
-		i++
-		curr = curr.next
-	}
+	l.Walk(func(interface{}) { i++ })
 	return i
 }
 
