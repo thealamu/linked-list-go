@@ -29,7 +29,10 @@ func (l *LinkedLists) PushFront(item interface{}) {
 func (l *LinkedLists) Size() int {
 	// walk the list to report the size
 	i := 0
-	l.Walk(func(interface{}) { i++ })
+	l.Walk(func(interface{}) bool {
+		i++
+		return false
+	})
 	return i
 }
 
@@ -39,13 +42,16 @@ func (l *LinkedLists) Empty() bool {
 }
 
 // Function to call for each iteration when walking
-type iterFunc func(interface{})
+type iterFunc func(interface{}) bool
 
-// Walk walks the linked lists, calling the iterFunc each iteration
+// Walk walks the linked lists, calling the iterFunc each iteration.
+// Signify stopping the walk by returning true from the iterFunc
 func (l *LinkedLists) Walk(f iterFunc) {
 	curr := l.head
 	for curr != nil {
-		f(curr.data)
+		if f(curr.data) {
+			break
+		}
 		curr = curr.next
 	}
 }
