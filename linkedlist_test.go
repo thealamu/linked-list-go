@@ -2,6 +2,23 @@ package linkedlists
 
 import "testing"
 
+func TestValueAt(t *testing.T) {
+	l := New()
+
+	v1 := 1
+	v2 := "Hello"
+	v3 := "World"
+
+	l.PushFront(v1)
+	l.PushFront(v2)
+	l.PushFront(v3)
+
+	got := l.ValueAt(1)
+	if got != v2 {
+		t.Errorf("expected '%+v' at index 1, got %+v", v2, got)
+	}
+}
+
 func TestPushFront(t *testing.T) {
 	l := New()
 

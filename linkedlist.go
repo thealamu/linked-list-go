@@ -13,6 +13,23 @@ func New() *LinkedLists {
 	return &LinkedLists{}
 }
 
+// ValueAt returns the value of the item at index (starting at 0 for first)
+func (l *LinkedLists) ValueAt(index int) interface{} {
+	var data interface{}
+
+	i := 0
+	l.Walk(func(d interface{}) bool {
+		if i == index {
+			data = d
+			return true
+		}
+		i++
+		return false
+	})
+
+	return data
+}
+
 // PushFront adds an item to the front of the list
 func (l *LinkedLists) PushFront(item interface{}) {
 	if l.head == nil {
