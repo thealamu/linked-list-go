@@ -19,6 +19,22 @@ func TestValueAt(t *testing.T) {
 	}
 }
 
+func TestPushBack(t *testing.T) {
+	l := New()
+
+	v1 := 1
+	v2 := "Hello"
+	v3 := "World"
+
+	l.PushBack(v1)
+	l.PushBack(v2)
+	l.PushBack(v3)
+
+	if l.head.data != v1 {
+		t.Errorf("PushBack failed, expected '%+v' to be at the end, got '%+v'", v1, l.head.data)
+	}
+}
+
 func TestPopFront(t *testing.T) {
 	l := New()
 

@@ -52,6 +52,23 @@ func (l *LinkedLists) PopFront() interface{} {
 	return tmp.data
 }
 
+func (l *LinkedLists) PushBack(item interface{}) {
+	newNode := &node{data: item}
+	if l.head == nil {
+		l.head = newNode
+		return
+	}
+
+	l.Walk(func(n *node) bool {
+		if n.next == nil {
+			// last node
+			n.next = newNode
+			return true
+		}
+		return false
+	})
+}
+
 // Size returns the length of the linked lists
 func (l *LinkedLists) Size() int {
 	// walk the list to report the size
