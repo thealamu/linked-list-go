@@ -18,9 +18,9 @@ func (l *LinkedLists) ValueAt(index int) interface{} {
 	var data interface{}
 
 	i := 0
-	l.Walk(func(d interface{}) bool {
+	l.Walk(func(n *node) bool {
 		if i == index {
-			data = d
+			data = n.data
 			return true
 		}
 		i++
@@ -56,7 +56,7 @@ func (l *LinkedLists) PopFront() interface{} {
 func (l *LinkedLists) Size() int {
 	// walk the list to report the size
 	i := 0
-	l.Walk(func(interface{}) bool {
+	l.Walk(func(*node) bool {
 		i++
 		return false
 	})
@@ -69,14 +69,14 @@ func (l *LinkedLists) Empty() bool {
 }
 
 // Function to call for each iteration when walking
-type iterFunc func(interface{}) bool
+type iterFunc func(*node) bool
 
 // Walk walks the linked lists, calling the iterFunc each iteration.
 // Signify stopping the walk by returning true from the iterFunc
 func (l *LinkedLists) Walk(f iterFunc) {
 	curr := l.head
 	for curr != nil {
-		if f(curr.data) {
+		if f(curr) {
 			break
 		}
 		curr = curr.next
